@@ -131,7 +131,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
                 follow = 0
                 # only if pacman itself plays the game
                 if index + 1 == totalAgents:
-                    follow = maxAgent(gameState, 0, depth + 1)
+                    follow = maxAgent(gs, 0, depth + 1)
                 else:
                     follow = minAgent(gs, index + 1, depth)
 
@@ -150,7 +150,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
 
                 follow = 0
                 if index + 1 == totalAgents:
-                    follow = maxAgent(gameState, 0, depth + 1)
+                    follow = maxAgent(gs, 0, depth + 1)
                 else:
                     follow = minAgent(gs, index + 1, depth)
 
@@ -160,6 +160,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
             return score
 
         bestAction = None
+
         # NOTE: self.index is always, ALWAYS 0.
         # The following code will reflect this.
         score = -math.inf
