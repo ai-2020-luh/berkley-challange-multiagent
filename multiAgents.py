@@ -152,8 +152,8 @@ class MinimaxAgent(MultiAgentSearchAgent):
 
 
 
-        # NOTE: self.index is always, ALWAYS 0
-        # the following code will reflect this.
+        # NOTE: self.index is always, ALWAYS 0.
+        # The following code will reflect this.
         actions = util.PriorityQueue()
         for action in gameState.getLegalActions(self.index):
             # GameState, if this specific action gets taken

@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f309921-b132-4690-8fa0-3928584c83bc" name="Default Changelist" comment="" />
+    <list default="true" id="1f309921-b132-4690-8fa0-3928584c83bc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/multiagent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/multiagent.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/multiAgents.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiAgents.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="GOROOT" path="/usr/local/Cellar/go/1.14.2_1/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1dqkbiUa4LiJsx4yg0k8XxAAUO5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,6 +29,33 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Grade Question 2" type="PythonConfigurationType" factoryName="Python">
+      <module name="multiagent" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="autograder.py" />
+      <option name="PARAMETERS" value="-q q2 --no-graphics" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -28,5 +69,54 @@
       <updated>1593160083759</updated>
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="440" y="173" key="#Plugins" timestamp="1593160608492">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="173" key="#Plugins/0.0.1680.1050@0.0.1680.1050" timestamp="1593160608492" />
+    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593170811243">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1593170811243" />
+    <state width="1659" height="177" key="GridCell.Tab.0.bottom" timestamp="1593181111935">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="177" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593181111935" />
+    <state width="1659" height="177" key="GridCell.Tab.0.center" timestamp="1593181111933">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="177" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593181111933" />
+    <state width="1659" height="177" key="GridCell.Tab.0.left" timestamp="1593181111932">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="177" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593181111932" />
+    <state width="1659" height="177" key="GridCell.Tab.0.right" timestamp="1593181111934">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="177" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593181111934" />
+    <state width="1659" height="364" key="GridCell.Tab.1.bottom" timestamp="1593181020882">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="364" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593181020882" />
+    <state width="1659" height="364" key="GridCell.Tab.1.center" timestamp="1593181020881">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="364" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593181020881" />
+    <state width="1659" height="364" key="GridCell.Tab.1.left" timestamp="1593181020881">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="364" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593181020881" />
+    <state width="1659" height="364" key="GridCell.Tab.1.right" timestamp="1593181020881">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="364" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593181020881" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1593160737454">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1593160737454" />
   </component>
 </project>
