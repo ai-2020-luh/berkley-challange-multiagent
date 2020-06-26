@@ -10,11 +10,11 @@
 # (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
 # Student side autograding was added by Brad Miller, Nick Hay, and
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
-
+import math
 
 from util import manhattanDistance
 from game import Directions
-import random, util
+import random, util, math, collections
 
 from game import Agent
 
@@ -134,8 +134,36 @@ class MinimaxAgent(MultiAgentSearchAgent):
         gameState.isLose():
         Returns whether or not the game state is a losing state
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+
+        totalAgents = gameState.getNumAgents()
+
+        def isOver(gameState, depth):
+            return depth == self.depth or gameState.isLose() or gameState.isWin()
+
+        def minAgent(gameState, index, depth):
+            if isOver(gameState, depth):
+                return self.evaluationFunction(gameState)
+
+            # TODO at the end, when you've decided on an action
+            if index + 1 == totalAgents:
+                return maxAgent(gameState, 0, depth + 1)
+
+            for action in gameState.getLegalActions(index):
+
+
+
+        # NOTE: self.index is always, ALWAYS 0
+        # the following code will reflect this.
+        actions = util.PriorityQueue()
+        for action in gameState.getLegalActions(self.index):
+            # GameState, if this specific action gets taken
+            gs = gameState.generateSuccessor(self.index, action)
+
+            score = minAgent(gameState = gs, index = self.index + 1, depth = 0)
+            actions.push(gs, score)
+
+
+        return actions.pop()
 
 class AlphaBetaAgent(MultiAgentSearchAgent):
     """
