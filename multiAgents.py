@@ -51,6 +51,14 @@ class ReflexAgent(Agent):
 
         return legalMoves[chosenIndex]
 
+
+    """
+    This method provides the method for evaluating a game state after a specific action. 
+    Here it always returns the worst possible outcome (negative infinity) if the action is 'stop' or if 
+    you are in the same position as a ghost (where the ghost is not scared of you). 
+    For the remaining possibilities the negative manhattan distance of the nearest food is returned. So 
+    the closer the food, the better.
+    """
     def evaluationFunction(self, currentGameState, action):
         """
         Design a better evaluation function here.
