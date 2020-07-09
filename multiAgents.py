@@ -60,34 +60,16 @@ class ReflexAgent(Agent):
     the closer the food, the better.
     """
     def evaluationFunction(self, currentGameState, action):
-        """
-        Design a better evaluation function here.
+        # you'd never receive an advantage, no chance at receiving pallets etc.
+        if action == 'Stop':
+            return float("-inf")
 
-        The evaluation function takes in the current and proposed successor
-        GameStates (pacman.py) and returns a number, where higher numbers are better.
-
-        The code below extracts some useful information from the state, like the
-        remaining food (newFood) and Pacman position after moving (newPos).
-        newScaredTimes holds the number of moves that each ghost will remain
-        scared because of Pacman having eaten a power pellet.
-
-        Print out these variables to see what you're getting, then combine them
-        to create a masterful evaluation function.
-        """
-        # Useful information you can extract from a GameState (pacman.py)
         successorGameState = currentGameState.generatePacmanSuccessor(action)
         newPos = successorGameState.getPacmanPosition()
-        newFood = successorGameState.getFood()
         newGhostStates = successorGameState.getGhostStates()
-        newScaredTimes = [ghostState.scaredTimer for ghostState in newGhostStates]
-
-        "*** YOUR CODE HERE ***"
 
         curfood = currentGameState.getFood()
         foodList = curfood.asList()
-
-        if action == 'Stop':
-            return float("-inf")
 
         for state in newGhostStates:
             if state.getPosition() == newPos and (state.scaredTimer == 0):
@@ -95,9 +77,7 @@ class ReflexAgent(Agent):
 
         foodDistance = float("-inf")
         for foodPos in foodList:
-            tempFoodDistance = -1 * (manhattanDistance(newPos, foodPos))
-            if (tempFoodDistance > foodDistance):
-                foodDistance = tempFoodDistance
+            foodDistance = max(foodDistance, -manhattanDistance(newPos, foodPos))
 
         return foodDistance
 
