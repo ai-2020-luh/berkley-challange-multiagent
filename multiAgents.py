@@ -193,7 +193,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         def isOver(gameState, depth):
             return depth == self.depth or gameState.isLose() or gameState.isWin()
 
-        def maxAgent(gameState, index, depth):
+        def maxAgent(gameState, index, depth, alpha, beta):
             if isOver(gameState, depth):
                 return self.evaluationFunction(gameState)
 
@@ -204,16 +204,19 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
                 follow = 0
                 # only if pacman itself plays the game
                 if index + 1 == totalAgents:
-                    follow = maxAgent(gs, 0, depth + 1)
+                    follow = maxAgent(gs, 0, depth + 1, alpha, beta)
                 else:
-                    follow = minAgent(gs, index + 1, depth)
+                    follow = minAgent(gs, index + 1, depth, alpha, beta)
 
-                if follow > score:
-                    score = follow
+                score = max(score, follow)
+                alpha = max(alpha, follow)
+
+                if follow > beta:
+                    return score
 
             return score
 
-        def minAgent(gameState, index, depth):
+        def minAgent(gameState, index, depth, alpha, beta):
             if isOver(gameState, depth):
                 return self.evaluationFunction(gameState)
 
@@ -223,25 +226,36 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
 
                 follow = 0
                 if index + 1 == totalAgents:
-                    follow = maxAgent(gs, 0, depth + 1)
+                    follow = maxAgent(gs, 0, depth + 1, alpha, beta)
                 else:
-                    follow = minAgent(gs, index + 1, depth)
+                    follow = minAgent(gs, index + 1, depth, alpha, beta)
 
-                if follow < score:
-                    score = follow
+                score = min(score, follow)
+                beta = min(beta, follow)
+
+                if follow < alpha:
+                    return score
 
             return score
+
 
         bestAction = None
 
         # NOTE: self.index is always, ALWAYS 0.
-        # The following code will reflect this.
+        # The following code will reflect this,
+        # therefore paxcman (a max agent) will start.
+
+        # (personal note) max sets alpha, prunes on beta
+        # (personal note) min sets beta,  prunes on alpha
         score = -math.inf
+
+        # Beta won't be set in the first node
+        alpha = -math.inf
         for action in gameState.getLegalActions(self.index):
             # GameState, if this specific action gets taken
             gs = gameState.generateSuccessor(self.index, action)
 
-            follow = minAgent(gameState=gs, index=self.index + 1, depth=0)
+            follow = minAgent(gameState=gs, index=self.index + 1, depth=0, alpha = alpha, beta = math.inf)
 
             if follow > score:
                 score = follow
