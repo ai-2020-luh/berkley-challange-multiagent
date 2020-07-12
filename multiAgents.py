@@ -178,8 +178,8 @@ class MinimaxAgent(MultiAgentSearchAgent):
             if follow > score:
                 score = follow
                 bestAction = action
-
         return bestAction
+
 
 
 class AlphaBetaAgent(MultiAgentSearchAgent):
@@ -188,11 +188,66 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
     """
 
     def getAction(self, gameState):
-        """
-        Returns the minimax action using self.depth and self.evaluationFunction
-        """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        totalAgents = gameState.getNumAgents()
+
+        def isOver(gameState, depth):
+            return depth == self.depth or gameState.isLose() or gameState.isWin()
+
+        def maxAgent(gameState, index, depth):
+            if isOver(gameState, depth):
+                return self.evaluationFunction(gameState)
+
+            score = -math.inf
+            for action in gameState.getLegalActions(index):
+                gs = gameState.generateSuccessor(index, action)
+
+                follow = 0
+                # only if pacman itself plays the game
+                if index + 1 == totalAgents:
+                    follow = maxAgent(gs, 0, depth + 1)
+                else:
+                    follow = minAgent(gs, index + 1, depth)
+
+                if follow > score:
+                    score = follow
+
+            return score
+
+        def minAgent(gameState, index, depth):
+            if isOver(gameState, depth):
+                return self.evaluationFunction(gameState)
+
+            score = math.inf
+            for action in gameState.getLegalActions(index):
+                gs = gameState.generateSuccessor(index, action)
+
+                follow = 0
+                if index + 1 == totalAgents:
+                    follow = maxAgent(gs, 0, depth + 1)
+                else:
+                    follow = minAgent(gs, index + 1, depth)
+
+                if follow < score:
+                    score = follow
+
+            return score
+
+        bestAction = None
+
+        # NOTE: self.index is always, ALWAYS 0.
+        # The following code will reflect this.
+        score = -math.inf
+        for action in gameState.getLegalActions(self.index):
+            # GameState, if this specific action gets taken
+            gs = gameState.generateSuccessor(self.index, action)
+
+            follow = minAgent(gameState=gs, index=self.index + 1, depth=0)
+
+            if follow > score:
+                score = follow
+                bestAction = action
+        return bestAction
+
 
 
 class ExpectimaxAgent(MultiAgentSearchAgent):
