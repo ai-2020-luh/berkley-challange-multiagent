@@ -51,7 +51,6 @@ class ReflexAgent(Agent):
 
         return legalMoves[chosenIndex]
 
-
     """
     This method provides the method for evaluating a game state after a specific action. 
     Here it always returns the worst possible outcome (negative infinity) if the action is 'stop' or if 
@@ -59,6 +58,7 @@ class ReflexAgent(Agent):
     For the remaining possibilities the negative manhattan distance of the nearest food is returned. So 
     the closer the food, the better.
     """
+
     def evaluationFunction(self, currentGameState, action):
         # you'd never receive an advantage, no chance at receiving pallets etc.
         if action == 'Stop':
@@ -181,7 +181,6 @@ class MinimaxAgent(MultiAgentSearchAgent):
         return bestAction
 
 
-
 class AlphaBetaAgent(MultiAgentSearchAgent):
     """
     Your minimax agent with alpha-beta pruning (question 3)
@@ -191,7 +190,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         totalAgents = gameState.getNumAgents()
 
         def isOver(gameState, depth):
-            return depth >= self.depth or gameState.isLose() or gameState.isWin()
+            return depth == self.depth or gameState.isLose() or gameState.isWin()
 
         def maxAgent(gameState, index, depth, alpha, beta):
             if isOver(gameState, depth):
@@ -238,7 +237,6 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
 
             return score
 
-
         bestAction = None
 
         # NOTE: self.index is always, ALWAYS 0.
@@ -255,7 +253,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
             # GameState, if this specific action gets taken
             gs = gameState.generateSuccessor(self.index, action)
 
-            follow = minAgent(gameState=gs, index=self.index + 1, depth=0, alpha = alpha, beta = math.inf)
+            follow = minAgent(gameState=gs, index=self.index + 1, depth=0, alpha=alpha, beta=math.inf)
             alpha = max(alpha, follow)
 
             if follow > score:
@@ -264,21 +262,62 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         return bestAction
 
 
-
 class ExpectimaxAgent(MultiAgentSearchAgent):
     """
       Your expectimax agent (question 4)
     """
 
     def getAction(self, gameState):
-        """
-        Returns the expectimax action using self.depth and self.evaluationFunction
 
-        All ghosts should be modeled as choosing uniformly at random from their
-        legal moves.
-        """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        def isOver(depth, gameState):
+            return depth >= self.depth or gameState.isWin() or gameState.isLose()
+
+        # Helper function to determine if next agent is using max or min
+        def agent(gameState, index, depth):
+            if index == gameState.getNumAgents():
+                # Start with maxagent all over again and increase depth
+                return maxAgent(gameState, index=0, depth=depth + 1)
+            else:
+                return minAgent(gameState, index, depth)
+
+        def minAgent(gameState, index, depth):
+            if isOver(depth, gameState):
+                return self.evaluationFunction(gameState)
+
+            moves = gameState.getLegalActions()
+
+            totalScore = 0.0
+            for nextAction in moves:
+                nextState = gameState.generateSuccessor(index, nextAction)
+
+                score = agent(nextState, index+1, depth)
+
+                totalScore += score
+
+            return totalScore / len(moves)
+
+        def maxAgent(gameState, index, depth):
+            if isOver(depth, gameState):
+                return self.evaluationFunction(gameState)
+
+            totalScore = -math.inf
+            for action in gameState.getLegalActions():
+                nextState = gameState.generateSuccessor(index, action)
+                score = agent(nextState, index+1, depth)
+                totalScore = max(totalScore, score)
+
+            return totalScore
+
+        bestAction = None
+        bestScore = -math.inf
+        for action in gameState.getLegalActions():
+            nextState = gameState.generateSuccessor(0, action)
+            score = agent(nextState, index=1, depth=0)
+            if score > bestScore:
+                bestScore = score
+                bestAction = action
+
+        return bestAction
 
 
 def betterEvaluationFunction(currentGameState):
