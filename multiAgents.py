@@ -191,7 +191,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         totalAgents = gameState.getNumAgents()
 
         def isOver(gameState, depth):
-            return depth == self.depth or gameState.isLose() or gameState.isWin()
+            return depth >= self.depth or gameState.isLose() or gameState.isWin()
 
         def maxAgent(gameState, index, depth, alpha, beta):
             if isOver(gameState, depth):
@@ -256,6 +256,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
             gs = gameState.generateSuccessor(self.index, action)
 
             follow = minAgent(gameState=gs, index=self.index + 1, depth=0, alpha = alpha, beta = math.inf)
+            alpha = max(alpha, follow)
 
             if follow > score:
                 score = follow
